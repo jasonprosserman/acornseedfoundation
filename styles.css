@@ -1,0 +1,312 @@
+/* Organic — design-system tokens and component classes, tuned for Acorn Seed Foundation. This file is the source of truth for the system's look; retune it here and see readme.md. */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap');
+
+:root {
+  --color-bg: #f7f3ea;
+  --color-surface: #f1ece3;
+  --color-text: #15140f;
+  --color-accent: #3f5a3a;
+  --color-accent-2: #b4703c;
+  --color-divider: color-mix(in srgb, #15140f 12%, transparent);
+
+  /* Dark band — the forest ground the foundation's approach and footer sections sit on. */
+  --color-deep: #1f2a1b;
+  --color-on-deep: #f1ece3;
+  --color-on-deep-muted: color-mix(in srgb, #f1ece3 65%, transparent);
+  --color-sage: #b8c9b0;
+
+  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
+     same step of any role matches the others in visual value. The forest
+     accent's own value sits near step 800, so its hover and pressed states
+     move DOWN the ramp (800, 900), not up. */
+  --color-neutral-100: #f7f5f2;
+  --color-neutral-200: #ebe7e2;
+  --color-neutral-300: #d9d3cc;
+  --color-neutral-400: #c0b9b0;
+  --color-neutral-500: #a49d94;
+  --color-neutral-600: #867f76;
+  --color-neutral-700: #655f57;
+  --color-neutral-800: #46423b;
+  --color-neutral-900: #292621;
+
+  --color-accent-100: #eff8ed;
+  --color-accent-200: #ddedda;
+  --color-accent-300: #c5dcc0;
+  --color-accent-400: #a8c4a1;
+  --color-accent-500: #8aa884;
+  --color-accent-600: #6d8a66;
+  --color-accent-700: #4f6949;
+  --color-accent-800: #34492f;
+  --color-accent-900: #1c2b18;
+
+  --color-accent-2-100: #fff1e1;
+  --color-accent-2-200: #ffe0c6;
+  --color-accent-2-300: #fbc9a3;
+  --color-accent-2-400: #eaab7c;
+  --color-accent-2-500: #cf8d5a;
+  --color-accent-2-600: #af6f3b;
+  --color-accent-2-700: #8a501e;
+  --color-accent-2-800: #633507;
+  --color-accent-2-900: #3e1c00;
+
+  --font-heading: "Hanken Grotesk", system-ui, sans-serif;
+  --font-heading-weight: 500;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --font-body-weight: 300;
+
+  --space-1: 4.4px;
+  --space-2: 8.8px;
+  --space-3: 13.2px;
+  --space-4: 17.6px;
+  --space-6: 26.4px;
+  --space-8: 35.2px;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+
+  /* Elevation — nearly flat. Hairline borders do the structural work; these
+     are for things that genuinely float (the dialog). */
+  --shadow-sm: 0 1px 1px color-mix(in srgb, #15140f 5%, transparent);
+  --shadow-md: 0 2px 8px color-mix(in srgb, #15140f 8%, transparent);
+  --shadow-lg: 0 18px 44px color-mix(in srgb, #15140f 16%, transparent);
+
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1); /* @kind other */
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
+
+/* Imagery, two treatments — see foundations/image.html.
+   .washed is for ATMOSPHERIC imagery only (landscape, texture, a photograph
+   behind a band): desaturated and lifted so it sits back into the page.
+   .photo is for people — partners, staff, events: unfiltered, because
+   desaturating the people this foundation funds works against the brand.
+   If a face is in the frame, it takes .photo. */
+.washed{filter:saturate(0.72) contrast(0.9) brightness(1.05) opacity(0.96)}
+.photo{position:relative;overflow:hidden;border-radius:var(--radius-lg)}
+.photo img{width:100%;display:block}
+.photo::after{content:'';position:absolute;inset:0;pointer-events:none;background:var(--color-accent-2);opacity:0.05;mix-blend-mode:multiply}
+.photo.plain::after{display:none}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Components — built with the tokens above. Plain CSS
+   on plain HTML: no JavaScript, no build step. Each class is documented in
+   readme.md and demonstrated in foundations/ and components/.
+   ══════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 16px; line-height: 1.6; font-weight: var(--font-body-weight); }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  line-height: 1.14; letter-spacing: -0.022em; margin: 0 0 var(--space-2);
+}
+h1 { font-size: 46px; line-height: 1.06; }
+h2 { font-size: 34px; }
+h3 { font-size: 24px; letter-spacing: -0.015em; }
+h4 { font-size: 19px; letter-spacing: -0.01em; }
+h5 { font-size: 16px; letter-spacing: 0; }
+h6 { font-size: 11.2px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent-800); text-underline-offset: 3px; transition: opacity 150ms var(--ease); }
+a:hover { opacity: 0.55; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption {
+  font-size: 12px; margin-top: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.text-muted { color: color-mix(in srgb, var(--color-text) 58%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 22%, transparent); }
+
+/* — editorial labels: the quiet uppercase voice this system runs on — */
+.eyebrow {
+  font-family: var(--font-heading); font-weight: 400; font-size: 11.2px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.meta {
+  display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;
+  font-weight: 400; font-size: 11.8px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.meta .sep { width: 28px; height: 1px; background: var(--color-divider); }
+.lede { font-size: 19px; max-width: 62ch; color: color-mix(in srgb, var(--color-text) 78%, transparent); }
+
+/* — bands: the horizontal color rhythm (offwhite → bone → forest) — */
+.band { background: var(--color-bg); }
+.band-surface { background: var(--color-surface); }
+.band-deep { background: var(--color-deep); color: var(--color-on-deep); }
+.band-deep .eyebrow, .band-deep .meta, .band-deep .text-muted { color: var(--color-on-deep-muted); }
+.band-deep a { color: var(--color-sage); }
+.band-deep .hr, .band-deep .meta .sep { background: color-mix(in srgb, #f1ece3 18%, transparent); }
+
+/* — rules — */
+.hr {
+  height: 1px; border: 0; margin: var(--space-4) 0;
+  background: var(--color-divider);
+}
+
+/* — buttons — */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: 400;
+  font-size: 14px; line-height: 1.2; color: var(--color-text);
+  background: transparent; border: 1px solid transparent;
+  padding: var(--space-3) calc(var(--space-4) * 1.3);
+  border-radius: var(--radius-md); transition: opacity 150ms var(--ease), background 150ms var(--ease), border-color 150ms var(--ease);
+}
+.btn svg { display: block; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-surface); }
+.btn-primary:hover { opacity: 0.75; }
+.btn-primary:active { background: var(--color-accent-900); border-color: var(--color-accent-900); opacity: 1; }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { border-color: var(--color-neutral-700); }
+.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 8%, transparent); }
+.btn-ghost { color: var(--color-accent-800); padding-inline: var(--space-1); }
+.btn-ghost:hover { opacity: 0.55; }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.btn-icon { width: 40px; height: 40px; padding: 0; }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+.band-deep .btn-primary { background: var(--color-surface); border-color: var(--color-surface); color: var(--color-deep); }
+.band-deep .btn-secondary { color: var(--color-on-deep); border-color: color-mix(in srgb, #f1ece3 28%, transparent); }
+.band-deep .btn-secondary:hover { border-color: var(--color-sage); }
+
+/* — forms — */
+.field > label {
+  display: block; font-size: 11.8px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 500; margin-bottom: 7px;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+.input {
+  width: 100%; min-height: 42px; padding: 8px 12px; font: inherit;
+  font-size: 15px; color: var(--color-text); caret-color: var(--color-accent);
+  background: transparent;
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+  transition: border-color 150ms var(--ease);
+}
+.input:hover { border-color: color-mix(in srgb, var(--color-text) 34%, transparent); }
+.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
+textarea.input { min-height: 96px; resize: vertical; }
+.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 15px; }
+.radio input, .seg-opt input {
+  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+}
+.radio .dot {
+  width: 16px; height: 16px; flex: none; border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+}
+.radio:hover .dot { border-color: var(--color-accent); }
+.radio input:checked + .dot {
+  border-color: var(--color-accent); background: var(--color-accent);
+  box-shadow: inset 0 0 0 4px var(--color-bg);
+}
+.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.seg {
+  display: inline-flex; overflow: hidden;
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+}
+.seg-opt {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 16px; font-size: 13.8px; cursor: pointer;
+  transition: background 150ms var(--ease);
+}
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
+.seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-surface); }
+.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 6%, transparent); }
+.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+/* — cards — */
+.card {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-4); border-radius: var(--radius-lg);
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+}
+.card-kicker { font-size: 11.2px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+.card-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 19px; line-height: 1.25; letter-spacing: -0.015em;
+}
+.card-body { margin: 0; font-size: 15px; color: color-mix(in srgb, var(--color-text) 78%, transparent); flex: 1; }
+.card-meta {
+  display: flex; align-items: center; gap: 8px; font-size: 11.8px;
+  letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+  color: color-mix(in srgb, var(--color-text) 50%, transparent);
+}
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.elev-lg { box-shadow: var(--shadow-lg); }
+
+/* — tags — */
+.tag {
+  display: inline-flex; align-items: center; font-size: 11.2px; font-weight: 500;
+  letter-spacing: 0.03em; padding: 4px 12px;
+  border-radius: 999px;
+}
+.tag-accent { background: var(--color-accent-200); color: var(--color-accent-900); }
+.tag-accent-2 { background: var(--color-accent-2-200); color: var(--color-accent-2-800); }
+.tag-neutral { background: var(--color-neutral-200); color: var(--color-neutral-800); }
+.tag-outline { border: 1px solid var(--color-divider); color: var(--color-text); }
+
+/* — navigation — */
+.nav {
+  display: flex; align-items: center; gap: var(--space-6);
+  padding: var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--color-divider);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+.nav-brand {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 17px; letter-spacing: -0.015em; margin-right: auto;
+}
+.nav-brand img { height: 30px; width: auto; }
+.nav a { color: inherit; text-decoration: none; font-size: 13.8px; font-weight: 500; letter-spacing: 0.01em; }
+.nav a:hover, .nav a[aria-current='page'] { opacity: 0.55; }
+
+/* — tables — */
+.table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table th {
+  text-align: left; font-size: 11.2px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  padding: var(--space-3) var(--space-2); border-bottom: 1px solid var(--color-divider);
+}
+.table td {
+  padding: var(--space-3) var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 3%, transparent); }
+
+/* — dialog — */
+.dialog-backdrop {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-deep) 55%, transparent);
+}
+.dialog {
+  width: min(460px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
+  padding: var(--space-6); border-radius: var(--radius-lg);
+  background: var(--color-bg); border: 1px solid var(--color-divider); box-shadow: var(--shadow-lg);
+}
+.dialog-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 22px; letter-spacing: -0.015em;
+}
+.dialog-body { font-size: 15px; color: color-mix(in srgb, var(--color-text) 78%, transparent); }
+.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
+
+/* — the softened frame: containers take a gentle radius, controls are rounded
+   rectangles rather than ovals; only tags stay fully pill. — */
+.btn, .input, .seg { border-radius: 12px; }
+.tag { border-radius: 999px; }
+.btn-icon { border-radius: 12px; }
+.input { padding-inline: 14px; }

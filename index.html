@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Acorn Seed Foundation</title>
+<meta name="description" content="A GTA-based family foundation collaborating with communities to build a more resilient, equitable, and just society." />
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* Page scaffolding only. Every color, font, radius and rule comes from the
+   system stylesheet: .band / .band-surface / .band-deep for the section
+   grounds, .eyebrow / .lede / .meta for the editorial voice, .btn and .tag
+   for controls. Nothing here re-declares a token. */
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 720px) { .wrap { padding: 0 24px; } }
+
+/* — nav: the system bar, made sticky and theme-adaptive — */
+.nav { display: block; position: sticky; top: 0; z-index: 20; padding: 0; transition: background 300ms var(--ease), border-color 300ms var(--ease), color 300ms var(--ease); }
+.nav > .wrap { display: flex; align-items: center; gap: var(--space-6); width: 100%; padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.nav[data-theme="dark"] { background: color-mix(in srgb, var(--color-deep) 88%, transparent); border-bottom-color: color-mix(in srgb, #f1ece3 18%, transparent); color: var(--color-on-deep); }
+.nav-links { display: flex; gap: var(--space-6); margin-left: auto; }
+.nav-brand img { transition: filter 400ms var(--ease); }
+.nav[data-theme="dark"] .nav-brand img { filter: invert(1) hue-rotate(180deg) saturate(1.2) brightness(0.95); }
+@media (max-width: 640px) { .nav-links { gap: var(--space-4); } .nav-links a:nth-child(3) { display: none; } }
+
+/* — section rhythm: 140–160px bands — */
+.sec { padding: 150px 0; }
+.sec-tight { padding: 96px 0 150px; }
+.row { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
+@media (max-width: 880px) { .sec { padding: 96px 0; } .row { grid-template-columns: 1fr; gap: var(--space-4); } }
+
+/* — hero — */
+.hero { padding: 132px 0 116px; }
+.hero h1 { font-size: clamp(38px, 5.4vw, 74px); line-height: 1.05; max-width: 20ch; margin: var(--space-4) 0 var(--space-6); }
+.hero h1 em { font-style: italic; }
+.hero .lede { font-size: clamp(17px, 1.5vw, 21px); max-width: 56ch; }
+.hero-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-8) 0 var(--space-8); }
+.hero .meta { padding-top: var(--space-4); border-top: 1px solid var(--color-divider); }
+
+/* — mission statement — */
+.mission { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.35; letter-spacing: -0.015em; max-width: 30ch; margin: 0 0 var(--space-6); }
+.stack-140 { margin-top: 140px; }
+@media (max-width: 880px) { .stack-140 { margin-top: 88px; } }
+
+/* — timeline: numbered 2×2, hairlines only — */
+.timeline { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--color-divider); margin-top: 72px; }
+.timeline > div { padding: var(--space-8) var(--space-8) var(--space-8) 0; border-bottom: 1px solid var(--color-divider); }
+.timeline h3 { margin: var(--space-3) 0 var(--space-2); }
+.timeline p { margin: 0; max-width: 44ch; }
+.timeline-note { margin-top: var(--space-8); max-width: 60ch; }
+@media (max-width: 720px) { .timeline { grid-template-columns: 1fr; } .timeline > div { padding-right: 0; } }
+
+/* — principles on the forest ground — */
+.principles { margin-top: var(--space-8); border-top: 1px solid color-mix(in srgb, #f1ece3 18%, transparent); }
+.principle { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; padding: var(--space-8) 0; border-bottom: 1px solid color-mix(in srgb, #f1ece3 18%, transparent); }
+.principle h3 { margin: 0 0 var(--space-2); }
+.principle p { margin: 0; max-width: 54ch; }
+.band-deep h2 { max-width: 26ch; }
+.band-deep .lede { color: var(--color-on-deep-muted); }
+@media (max-width: 880px) { .principle { grid-template-columns: 1fr; gap: var(--space-2); } }
+
+/* — partner carousel: 300px cards, right hairline, no fill — */
+.carousel-outer { margin-top: 96px; overflow: hidden; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); }
+.carousel-track { display: flex; will-change: transform; }
+.carousel-track.is-dragging { cursor: grabbing; }
+.partner { flex: none; width: 300px; padding: 36px 32px; border-right: 1px solid var(--color-divider); text-decoration: none; color: inherit; display: block; transition: opacity 150ms var(--ease); }
+.partner:hover { opacity: 0.6; }
+.partner-logo { height: 48px; display: flex; align-items: center; margin-bottom: var(--space-6); }
+.partner-logo img { height: 48px; max-width: 140px; width: auto; object-fit: contain; }
+.partner-logo span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-neutral-200); color: var(--color-accent); font-size: 17px; }
+.partner .name { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 18.4px; letter-spacing: -0.015em; line-height: 1.25; }
+.partner .desc { font-size: 14px; margin: var(--space-2) 0 var(--space-4); color: color-mix(in srgb, var(--color-text) 70%, transparent); }
+.partner-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.carousel-nav { display: flex; gap: var(--space-2); margin-top: var(--space-6); }
+
+/* — footer — */
+.foot { padding: 120px 0 48px; }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 64px; }
+.foot .wordmark { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 18.4px; margin-bottom: var(--space-4); }
+.foot p { font-size: 14px; max-width: 46ch; color: var(--color-on-deep-muted); }
+.foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3); margin-top: 80px; padding-top: var(--space-6); border-top: 1px solid color-mix(in srgb, #f1ece3 12%, transparent); }
+@media (max-width: 720px) { .foot-grid { grid-template-columns: 1fr; gap: var(--space-8); } }
+</style>
+</head>
+<body>
+
+<nav class="nav" data-theme="light">
+  <div class="wrap">
+    <a class="nav-brand" href="#home" aria-label="Acorn Seed Foundation home"><img src="assets/logo.png" alt="Acorn Seed Foundation" /></a>
+    <div class="nav-links">
+      <a href="#mission">About Us</a>
+      <a href="#how-we-work">Approach</a>
+      <a href="#partners">Partners</a>
+    </div>
+  </div>
+</nav>
+
+<section id="home" class="hero band" data-theme="light">
+  <div class="wrap">
+    <div class="eyebrow">A GTA Family Foundation &middot; Trust-Based Giving</div>
+    <h1>Multi-year grants for <em>community-led</em> work in Toronto</h1>
+    <p class="lede">We fund equity-deserving grassroots organizations tackling poverty, housing, and food security in the city of Toronto &mdash; unrestricted and long-term, so you can focus on the work.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#how-we-work">How we fund &rarr;</a>
+      <a class="btn btn-secondary" href="#partners">Our partners</a>
+    </div>
+    <div class="meta">
+      <span>Registered Canadian Charity</span>
+      <span class="sep" aria-hidden="true"></span>
+      <a href="https://www.charitydata.ca/charity/acorn-seed-foundation/731980736RR0001/" target="_blank" rel="noopener">BN&nbsp;731980736RR0001</a>
+      <span class="sep" aria-hidden="true"></span>
+      <span>Greater Toronto Area</span>
+    </div>
+  </div>
+</section>
+
+<section id="mission" class="sec band-surface" data-theme="light">
+  <div class="wrap">
+    <div class="row">
+      <div class="eyebrow">Mission</div>
+      <div>
+        <p class="mission">We collaborate with communities to build a more resilient, equitable, and just society.</p>
+        <p class="lede">A GTA-based family foundation founded in 2021. We make multi-year, unrestricted grants to grassroots and community-led organizations, with a focus on poverty alleviation, social justice, and equity-deserving communities.</p>
+      </div>
+    </div>
+
+    <div class="row stack-140">
+      <div class="eyebrow">About</div>
+      <div>
+        <p class="lede">Acorn Seed is a family foundation led by the third generation. The funds come from the sale of a large Canadian menswear company, and the work today reflects our generation&rsquo;s values: a commitment to community, social equity, and the people doing the work to make Toronto a more just place. Our giving is shaped alongside an advisory committee of community-rooted advisors.</p>
+      </div>
+    </div>
+
+    <div id="how-we-work" class="stack-140">
+      <div class="row">
+        <div class="eyebrow">How we work</div>
+        <div>
+          <p class="lede">All of our partners come from our own outreach &mdash; we, alongside our advisory committee, do the research first. We don&rsquo;t accept unsolicited applications. When we do invite a conversation, we aim to keep it light and flexible. Here&rsquo;s what to expect.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div>
+          <div class="eyebrow">01</div>
+          <h3>We come to you</h3>
+          <p class="text-muted">We do our own research before reaching out. All partnerships begin with a conversation we initiate &mdash; not an open call.</p>
+        </div>
+        <div>
+          <div class="eyebrow">02</div>
+          <h3>Flexible by design</h3>
+          <p class="text-muted">An application can take whatever form works best for your team: a short written form, a conversation, a video pitch, or materials you already have on hand.</p>
+        </div>
+        <div>
+          <div class="eyebrow">03</div>
+          <h3>Multi-year, unrestricted</h3>
+          <p class="text-muted">Five-year, unrestricted funding &mdash; 50% in years one and five, 100% in years two through four &mdash; with overlap so partners can plan beyond the grant.</p>
+        </div>
+        <div>
+          <div class="eyebrow">04</div>
+          <h3>Light-touch &amp; beyond the cheque</h3>
+          <p class="text-muted">No boilerplate reports. One or two honest conversations a year. We&rsquo;re open to volunteering, supporting matching campaigns, and connecting partners to other funders.</p>
+        </div>
+      </div>
+      <p class="timeline-note text-muted">If you&rsquo;ve received a message from us, this page is a good place to learn more about who we are and how we work.</p>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="sec band-deep" data-theme="dark">
+  <div class="wrap">
+    <div class="eyebrow">Our approach</div>
+    <h2 style="margin-top: var(--space-4)">Trust-based philanthropy starts from a simple premise: the people closest to a problem understand it better than we do.</h2>
+    <p class="lede">The work of a funder is to remove barriers, not add them. This is the model we follow &mdash; as a partner in long-term work, not a gatekeeper. Our giving is built around five guiding principles, drawn from the <a href="https://www.trustbasedphilanthropy.org/" target="_blank" rel="noopener">Trust-Based Philanthropy Project</a>.</p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="eyebrow">P / 01</div>
+        <div>
+          <h3>Lead with trust</h3>
+          <p class="text-muted">We start from the assumption that our partners are experts in their own communities and use their funding wisely.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="eyebrow">P / 02</div>
+        <div>
+          <h3>Center relationships</h3>
+          <p class="text-muted">The relationship is the work. We invest in long-term, honest partnerships rather than transactional grant cycles.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="eyebrow">P / 03</div>
+        <div>
+          <h3>Collaborate with humility and curiosity</h3>
+          <p class="text-muted">We come in to listen and learn. We are accountable for the harms a funder can cause, even unintentionally.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="eyebrow">P / 04</div>
+        <div>
+          <h3>Redistribute power</h3>
+          <p class="text-muted">Decisions about how funding is used belong with the people doing the work, not the people writing the cheques.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="eyebrow">P / 05</div>
+        <div>
+          <h3>Work for systemic equity</h3>
+          <p class="text-muted">We prioritize organizations led by and serving Black, Indigenous, racialized, disabled, and 2SLGBTQ+ communities, and grassroots groups working through charitable mentors or shared platforms.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="lede" style="margin-top: 88px">We&rsquo;re still learning. We continue to take cues from our partners and our advisory council on how to make our process better &mdash; and ultimately less annoying for the organizations we support. Funders don&rsquo;t need to suck so much. Seriously, we can do better. We welcome honest feedback from our charity partners and try to make funding relationships feel more like a partnership.</p>
+  </div>
+</section>
+
+<section id="partners" class="sec band" data-theme="light">
+  <div class="wrap">
+    <div class="row">
+      <div class="eyebrow">Partners</div>
+      <div>
+        <h2>Long-term commitments to organizations doing community-led work.</h2>
+        <p class="lede"><strong>Who we fund.</strong> Priority is given to organizations led by and serving equity-deserving communities &mdash; including Black, Indigenous, People of Colour, people living with disabilities or mental illness, and 2SLGBTQ+ communities. We also fund grassroots causes operating through charitable mentors or shared platforms.</p>
+      </div>
+    </div>
+
+    <div class="carousel-outer">
+      <div class="carousel-track" id="partnerTrack">
+        <a class="partner" href="https://www.blackcreekfarm.ca/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/black-creek.png" alt="Black Creek Community Farm logo" data-initials="BC" /></div>
+          <div class="name">Black Creek Community Farm</div>
+          <p class="desc">An urban agricultural centre rooted in Toronto&rsquo;s Jane and Finch neighbourhood, engaging diverse communities through sustainable food.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Urban agriculture</span><span class="tag tag-neutral">Food access</span><span class="tag tag-neutral">Jane &amp; Finch</span></div>
+        </a>
+        <a class="partner" href="https://www.cjclaw.org/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/community-justice.png" alt="Community Justice Collective logo" data-initials="CJ" /></div>
+          <div class="name">Community Justice Collective</div>
+          <p class="desc">Legal support for community organizers and social justice movements across the Greater Toronto and Hamilton Area.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Legal support</span><span class="tag tag-neutral">Social justice</span><span class="tag tag-neutral">GTHA</span></div>
+        </a>
+        <a class="partner" href="https://www.hctoronto.org/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/homeless-connect.png" alt="Homeless Connect Toronto logo" data-initials="HC" /></div>
+          <div class="name">Homeless Connect Toronto</div>
+          <p class="desc">Coordinates &ldquo;one-stop-shop&rdquo; events connecting people at risk of or experiencing homelessness with the supports they need.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Homelessness</span><span class="tag tag-neutral">Community services</span><span class="tag tag-neutral">Toronto</span></div>
+        </a>
+        <a class="partner" href="https://www.maggiestoronto.org/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/maggies.png" alt="Maggie’s Toronto logo" data-initials="MT" /></div>
+          <div class="name">Maggie&rsquo;s Toronto Sex Workers Action Project</div>
+          <p class="desc">Canada&rsquo;s oldest sex-worker justice initiative, offering wrap-around services and life-affirming care across Toronto and the GTA.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Sex worker justice</span><span class="tag tag-neutral">Harm reduction</span><span class="tag tag-neutral">GTA</span></div>
+        </a>
+        <a class="partner" href="https://readingpartnership.com/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/reading-partnership.png" alt="The Reading Partnership logo" data-initials="TR" /></div>
+          <div class="name">The Reading Partnership</div>
+          <p class="desc">Builds literacy programs and resources for families and children in the Kingston-Galloway-Orton Park community of Scarborough.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Literacy</span><span class="tag tag-neutral">Children &amp; families</span><span class="tag tag-neutral">Scarborough</span></div>
+        </a>
+        <a class="partner" href="https://taeh.ca/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/taeh.png" alt="Toronto Alliance to End Homelessness logo" data-initials="TA" /></div>
+          <div class="name">Toronto Alliance to End Homelessness</div>
+          <p class="desc">A community-based collective-impact initiative working toward a Toronto where homelessness is rare, brief, and non-recurring.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Homelessness</span><span class="tag tag-neutral">Collective impact</span><span class="tag tag-neutral">Toronto</span></div>
+        </a>
+        <a class="partner" href="https://torontoblackfarmersandfoodgrowerscollective.yourwebsitespace.com" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/black-farmers.png" alt="Toronto Black Farmers logo" data-initials="TB" /></div>
+          <div class="name">Toronto Black Farmers</div>
+          <p class="desc">A collective of urban farmers and growers building a community food hub focused on food sovereignty, justice, and access to clean food.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Food sovereignty</span><span class="tag tag-neutral">Black community</span><span class="tag tag-neutral">Urban farming</span></div>
+        </a>
+        <a class="partner" href="https://twhls.ca/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/thunder-woman.png" alt="Thunder Woman Healing Lodge Society logo" data-initials="TW" /></div>
+          <div class="name">Thunder Woman Healing Lodge Society</div>
+          <p class="desc">Trauma-informed, culturally grounded services and housing for First Nations, Inuit, and M&eacute;tis 2SLGBTQIA+ women exiting the justice system.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Indigenous</span><span class="tag tag-neutral">Housing</span><span class="tag tag-neutral">2SLGBTQIA+</span></div>
+        </a>
+        <a class="partner" href="https://wanasah.ca/" target="_blank" rel="noopener">
+          <div class="partner-logo"><img src="assets/partners/wanasah.png" alt="Wanasah logo" data-initials="WA" /></div>
+          <div class="name">Wanasah</div>
+          <p class="desc">A non-profit mental-health agency addressing the urgent needs of Black youth and their families in Regent Park and surrounding downtown Toronto neighbourhoods.</p>
+          <div class="partner-tags"><span class="tag tag-neutral">Mental health</span><span class="tag tag-neutral">Black youth</span><span class="tag tag-neutral">Regent Park</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <button type="button" class="btn btn-secondary btn-icon carousel-prev" aria-label="Previous partners">&larr;</button>
+      <button type="button" class="btn btn-secondary btn-icon carousel-next" aria-label="Next partners">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<footer class="foot band-deep" data-theme="dark">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="wordmark">Acorn Seed Foundation</div>
+        <p>A GTA-based family foundation collaborating with communities to build a more resilient, equitable, and just society.</p>
+      </div>
+      <div>
+        <div class="eyebrow">Registration</div>
+        <p style="margin-top: var(--space-3)">Registered Canadian Charity<br />BN <a href="https://www.charitydata.ca/charity/acorn-seed-foundation/731980736RR0001/" target="_blank" rel="noopener">731980736RR0001</a></p>
+        <p><a href="https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyBscSrch?request_locale=en" target="_blank" rel="noopener">CRA charity listing</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom meta">
+      <span>&copy; <span id="year">2026</span> Acorn Seed Foundation</span>
+      <span>Founded 2021</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* Partner logo fallback: a two-letter tile if the artwork fails to load. */
+function initLogoFallbacks(root) {
+  root.querySelectorAll('.partner-logo img').forEach(img => {
+    img.onerror = function () {
+      const s = document.createElement('span');
+      s.setAttribute('aria-hidden', 'true');
+      s.textContent = this.dataset.initials || '';
+      this.replaceWith(s);
+    };
+  });
+}
+initLogoFallbacks(document);
+
+/* Partner carousel — 0.5px/frame, pauses on hover, arrows snap one card,
+   drag and horizontal wheel supported. */
+(function () {
+  const track = document.getElementById('partnerTrack');
+  if (!track) return;
+  const originals = [...track.children];
+  originals.forEach(el => track.appendChild(el.cloneNode(true)));
+  initLogoFallbacks(track);
+  let x = 0, paused = false, dragStart = null, dragFrom = null;
+  const span = () => originals.reduce((w, el) => w + el.offsetWidth, 0);
+  function wrap() { const s = span(); if (x < -s) x += s; if (x > 0) x -= s; }
+  (function tick() {
+    if (!paused) { x -= 0.5; wrap(); track.style.transform = 'translateX(' + x + 'px)'; }
+    requestAnimationFrame(tick);
+  })();
+  const outer = track.parentElement;
+  outer.addEventListener('mouseenter', () => { paused = true; });
+  outer.addEventListener('mouseleave', () => { if (dragStart === null) paused = false; });
+  function snap(dir) {
+    paused = true;
+    x -= dir * track.children[0].offsetWidth; wrap();
+    track.style.transition = 'transform 450ms cubic-bezier(0.25,0.1,0.25,1)';
+    track.style.transform = 'translateX(' + x + 'px)';
+    setTimeout(() => { track.style.transition = ''; paused = false; }, 460);
+  }
+  document.querySelector('.carousel-prev').addEventListener('click', () => snap(-1));
+  document.querySelector('.carousel-next').addEventListener('click', () => snap(1));
+  let resume;
+  outer.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); paused = true; x -= e.deltaX; wrap();
+    track.style.transform = 'translateX(' + x + 'px)';
+    clearTimeout(resume);
+    resume = setTimeout(() => { if (dragStart === null && !outer.matches(':hover')) paused = false; }, 200);
+  }, { passive: false });
+  track.addEventListener('mousedown', e => { dragStart = e.clientX; dragFrom = x; paused = true; track.classList.add('is-dragging'); e.preventDefault(); });
+  window.addEventListener('mousemove', e => { if (dragStart === null) return; x = dragFrom + (e.clientX - dragStart); track.style.transform = 'translateX(' + x + 'px)'; });
+  window.addEventListener('mouseup', e => {
+    if (dragStart === null) return;
+    const d = e.clientX - dragStart; dragStart = null; track.classList.remove('is-dragging');
+    if (Math.abs(d) > 60) snap(d > 0 ? -1 : 1); else paused = false;
+  });
+  track.addEventListener('touchstart', e => { dragStart = e.touches[0].clientX; dragFrom = x; paused = true; }, { passive: true });
+  track.addEventListener('touchmove', e => { if (dragStart === null) return; x = dragFrom + (e.touches[0].clientX - dragStart); track.style.transform = 'translateX(' + x + 'px)'; }, { passive: true });
+  track.addEventListener('touchend', e => { const d = e.changedTouches[0].clientX - dragStart; dragStart = null; if (Math.abs(d) > 60) snap(d > 0 ? -1 : 1); else paused = false; });
+})();
+
+/* Nav theme follows the band behind it. */
+(function () {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  const sections = [...document.querySelectorAll('[data-theme]')].filter(el => el !== nav);
+  let raf = null;
+  function update() {
+    raf = null;
+    const y = nav.getBoundingClientRect().bottom + 1;
+    for (const sec of sections) {
+      const r = sec.getBoundingClientRect();
+      if (r.top <= y && r.bottom > y) {
+        const theme = sec.getAttribute('data-theme');
+        if (nav.getAttribute('data-theme') !== theme) nav.setAttribute('data-theme', theme);
+        return;
+      }
+    }
+  }
+  const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  update();
+})();
+</script>
+</body>
+</html>
