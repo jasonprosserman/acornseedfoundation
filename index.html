@@ -656,6 +656,36 @@
       margin: 0;
       max-width: 52ch;
     }
+    .form-status {
+      display: none;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 52ch;
+      padding: 14px 16px;
+      border: 1px solid var(--hairline);
+      border-radius: 2px;
+    }
+    .form-status[data-state="success"] {
+      display: block;
+      color: var(--accent);
+      background: rgba(63, 90, 58, 0.07);
+      border-color: rgba(63, 90, 58, 0.22);
+    }
+    .form-status[data-state="error"] {
+      display: block;
+      color: var(--amber);
+      background: rgba(184, 107, 58, 0.07);
+      border-color: rgba(184, 107, 58, 0.24);
+    }
+    .form-status a {
+      color: inherit;
+      border-bottom: 1px solid currentColor;
+    }
+    .contact-form[data-submitting="true"] .btn-primary {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
     /* === FOOTER === */
     footer {
@@ -1037,6 +1067,7 @@
             <textarea id="contact-message" name="message" rows="5" required></textarea>
           </div>
           <div class="form-actions">
+            <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
             <button type="submit" class="btn-primary">Send message &rarr;</button>
             <p class="form-note">Messages are read by the foundation team. We respond to existing partners and verified inquiries; unsolicited proposals will not receive a reply.</p>
           </div>
@@ -1207,6 +1238,63 @@
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
     update();
+  })();
+</script>
+
+<!-- Contact form: submit in the background so visitors stay on the page.
+     If JavaScript or fetch is unavailable, the form still posts normally to
+     Formspree and the visitor sees Formspree's own confirmation page. -->
+<script>
+  (function () {
+    var form = document.querySelector('form.contact-form');
+    if (!form || !window.fetch || !window.FormData) return;
+
+    var status = document.getElementById('contact-status');
+    var button = form.querySelector('button[type="submit"]');
+    var buttonLabel = button ? button.textContent : '';
+
+    function setStatus(state, html) {
+      if (!status) return;
+      status.setAttribute('data-state', state);
+      status.innerHTML = html;
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (status) {
+        status.removeAttribute('data-state');
+        status.innerHTML = '';
+      }
+      form.setAttribute('data-submitting', 'true');
+      if (button) button.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            form.reset();
+            setStatus('success', 'Thank you — your message has been sent. We read everything that comes through and will reply if it’s an inquiry we can help with.');
+            return;
+          }
+          return response.json().then(function (data) {
+            var detail = data && data.errors
+              ? data.errors.map(function (e) { return e.message; }).join(', ')
+              : '';
+            throw new Error(detail || 'Submission failed');
+          });
+        })
+        .catch(function () {
+          setStatus('error', 'Something went wrong and your message was not sent. Please email us directly at <a href="mailto:info@acornseedfoundation.com">info@acornseedfoundation.com</a>.');
+        })
+        .then(function () {
+          form.removeAttribute('data-submitting');
+          if (button) button.textContent = buttonLabel;
+        });
+    });
   })();
 </script>
 
