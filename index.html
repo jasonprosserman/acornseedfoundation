@@ -406,6 +406,11 @@ body { -webkit-font-smoothing: antialiased; }
 select.input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 44px; }
 .form-actions { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
 .form-note { font-size: 12.5px; margin: 0; max-width: 42ch; color: color-mix(in srgb, var(--color-text) 58%, transparent); }
+.form-status { display: none; margin: 0; max-width: 62ch; font-size: 15px; padding: var(--space-3) var(--space-4); border: 1px solid transparent; border-radius: var(--radius-md); }
+.form-status[data-state="success"] { display: block; color: var(--color-accent-800); background: var(--color-accent-100); border-color: var(--color-accent-300); }
+.form-status[data-state="error"] { display: block; color: var(--color-accent-2-800); background: var(--color-accent-2-100); border-color: var(--color-accent-2-300); }
+.form-status a { color: inherit; text-decoration: underline; }
+.form[data-submitting="true"] .btn-primary { opacity: 0.5; pointer-events: none; }
 
 /* — footer — */
 .foot { padding: 120px 0 48px; }
@@ -665,6 +670,7 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
             <label for="contact-message">Message</label>
             <textarea class="input" id="contact-message" name="message" rows="5" required></textarea>
           </div>
+          <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Send message &rarr;</button>
             <p class="form-note">Messages are read by the foundation team. We respond to existing partners and verified inquiries; unsolicited proposals will not receive a reply.</p>
@@ -781,6 +787,63 @@ initLogoFallbacks(document);
   window.addEventListener('resize', schedule);
   update();
 })();
+</script>
+
+<!-- Contact form: submit in the background so visitors stay on the page.
+     If JavaScript or fetch is unavailable, the form still posts normally to
+     Formspree and the visitor sees Formspree's own confirmation page. -->
+<script>
+  (function () {
+    var form = document.querySelector('form.form');
+    if (!form || !window.fetch || !window.FormData) return;
+
+    var status = document.getElementById('contact-status');
+    var button = form.querySelector('button[type="submit"]');
+    var buttonLabel = button ? button.textContent : '';
+
+    function setStatus(state, html) {
+      if (!status) return;
+      status.setAttribute('data-state', state);
+      status.innerHTML = html;
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (status) {
+        status.removeAttribute('data-state');
+        status.innerHTML = '';
+      }
+      form.setAttribute('data-submitting', 'true');
+      if (button) button.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            form.reset();
+            setStatus('success', 'Thank you — your message has been sent. We read everything that comes through and will reply if it’s an inquiry we can help with.');
+            return;
+          }
+          return response.json().then(function (data) {
+            var detail = data && data.errors
+              ? data.errors.map(function (e) { return e.message; }).join(', ')
+              : '';
+            throw new Error(detail || 'Submission failed');
+          });
+        })
+        .catch(function () {
+          setStatus('error', 'Something went wrong and your message was not sent. Please email us directly at <a href="mailto:info@acornseedfoundation.com">info@acornseedfoundation.com</a>.');
+        })
+        .then(function () {
+          form.removeAttribute('data-submitting');
+          if (button) button.textContent = buttonLabel;
+        });
+    });
+  })();
 </script>
 </body>
 </html>
