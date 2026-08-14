@@ -32,8 +32,11 @@ future edits don't require hunting down the originals.
 
 - The filename must stay lowercase `index.html`. GitHub Pages is case-sensitive
   and will not serve `Index.html` as the site root.
-- The contact form uses `action="mailto:"`, which relies on the visitor having a
-  desktop mail client configured. It does not work for most mobile or webmail
-  users. Worth replacing with a form service if inbound contact matters.
+- The contact form posts to Formspree (`https://formspree.io/f/xwleqljo`), which
+  forwards submissions by email. It previously used `action="mailto:"`, which
+  silently failed for mobile and webmail visitors. Two hidden fields support this:
+  `_subject` sets the notification subject line, and `_gotcha` is a honeypot that
+  bots fill in and humans never see — Formspree discards anything with it set.
+  The free tier allows roughly 50 submissions per month.
 - DNS is managed at Squarespace (the registrar). Google Workspace handles email
   for this domain — do not remove the MX, SPF, DKIM, or DMARC records.
