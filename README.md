@@ -38,5 +38,12 @@ future edits don't require hunting down the originals.
   `_subject` sets the notification subject line, and `_gotcha` is a honeypot that
   bots fill in and humans never see — Formspree discards anything with it set.
   The free tier allows roughly 50 submissions per month.
+- The form submits via `fetch()` so the visitor stays on the page and sees an
+  inline confirmation, rather than being redirected to Formspree's own thank-you
+  page (custom redirects are a paid Formspree feature; Ajax submission is not).
+  If JavaScript is unavailable the form still posts normally and falls back to
+  Formspree's hosted confirmation — nothing is lost, it's just less elegant.
+  On failure the visitor is shown a direct mailto: fallback and their typed
+  message is deliberately *not* cleared.
 - DNS is managed at Squarespace (the registrar). Google Workspace handles email
   for this domain — do not remove the MX, SPF, DKIM, or DMARC records.
