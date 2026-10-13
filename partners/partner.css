@@ -372,6 +372,15 @@ body { -webkit-font-smoothing: antialiased; }
 .hero-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-6) 0; }
 @media (max-width: 720px) { .hero-ctas .btn { flex: 1 1 auto; } }
 
+/* directory: carousel for past partners (same as the home page) */
+.carousel-outer { margin-top: var(--space-6); overflow: hidden; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); }
+.carousel-track { display: flex; will-change: transform; }
+.carousel-track.is-dragging { cursor: grabbing; }
+.carousel-track .partner { flex: none; width: 300px; padding: 36px 32px; border-right: 1px solid var(--color-divider); }
+.carousel-track .partner:hover { opacity: 0.6; }
+.carousel-nav { display: flex; gap: var(--space-2); margin-top: var(--space-6); }
+@media (max-width: 720px) { .carousel-track .partner { width: 268px; padding: 28px 24px; } }
+
 /* directory */
 .group + .group { margin-top: 96px; }
 .group .eyebrow { margin-bottom: var(--space-6); }

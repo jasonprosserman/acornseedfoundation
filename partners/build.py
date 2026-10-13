@@ -134,6 +134,16 @@ document.getElementById('year').textContent = new Date().getFullYear();
 </script>"""
 
 
+def carousel_script():
+    """The home page's partner-carousel script, so the directory scrolls the same way."""
+    src = INDEX.read_text(encoding="utf-8")
+    m = re.search(r"(/\* Partner logo fallback.*?\n\}\)\(\);\n)", src, re.S)
+    return "<script>\n" + m.group(1) + "</script>"
+
+
+CAROUSEL_SCRIPT = ""
+
+
 def host(url):
     return re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
 
@@ -271,29 +281,38 @@ def partner_page(p, logo_uri, asf):
 
 
 def directory_page(partners, logos, asf):
-    cohorts = []
-    for p in partners:
-        if p["cohort"] not in cohorts:
-            cohorts.append(p["cohort"])
-    cohorts.sort(reverse=True)  # newest first
+    """Current cohort as large cards; every earlier cohort in one scrolling
+    carousel (same mechanics as the home page), newest cohort first."""
+    cohorts = sorted({p["cohort"] for p in partners}, reverse=True)
+    current_cohort = cohorts[0]
+    current = [p for p in partners if p["cohort"] == current_cohort]
+    past = [p for c in cohorts[1:] for p in partners if p["cohort"] == c]
 
-    def card(p):
-        return f"""<a class="partner card" href="/partners/{p["slug"]}/">
+    def card(p, cls="partner card"):
+        return f"""<a class="{cls}" href="/partners/{p["slug"]}/">
           <div class="partner-logo"><img src="{logos[p["slug"]]}" alt="{esc(p.get("logo_alt") or p["name"] + " logo")}" data-initials="{initials(p["name"])}" /></div>
           <div class="name">{esc(p["name"])}</div>
           <p class="desc">{esc(p["tagline"])}</p>
           <div class="partner-tags">{"".join(f'<span class="tag tag-neutral">{esc(t)}</span>' for t in p["tags"])}</div>
         </a>"""
 
-    def group(title, items):
-        if not items:
-            return ""
-        return f"""<div class="group">
-      <div class="eyebrow">{esc(title)}</div>
-      <div class="grid">{"".join(card(p) for p in items)}</div>
+    current_html = f"""<div class="group">
+      <div class="eyebrow">Current</div>
+      <div class="grid">{"".join(card(p) for p in current)}</div>
     </div>"""
 
-    groups = "".join(group(c, [p for p in partners if p["cohort"] == c]) for c in cohorts)
+    past_html = ""
+    if past:
+        past_html = f"""<div class="group">
+      <div class="eyebrow">Past</div>
+      <div class="carousel-outer">
+        <div class="carousel-track" id="partnerTrack">{"".join(card(p, "partner") for p in past)}</div>
+      </div>
+      <div class="carousel-nav">
+        <button type="button" class="btn btn-secondary btn-icon carousel-prev" aria-label="Previous partners">&larr;</button>
+        <button type="button" class="btn btn-secondary btn-icon carousel-next" aria-label="Next partners">&rarr;</button>
+      </div>
+    </div>"""
 
     return f"""<!doctype html>
 <html lang="en">
@@ -319,12 +338,14 @@ def directory_page(partners, logos, asf):
 
 <section class="sec band-surface" data-theme="light">
   <div class="wrap">
-    {groups}
+    {current_html}
+    {past_html}
   </div>
 </section>
 
 {FOOTER}
 {NAV_SCRIPT}
+{CAROUSEL_SCRIPT}
 </body>
 </html>
 """
@@ -392,6 +413,15 @@ body { -webkit-font-smoothing: antialiased; }
 .hero-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-6) 0; }
 @media (max-width: 720px) { .hero-ctas .btn { flex: 1 1 auto; } }
 
+/* directory: carousel for past partners (same as the home page) */
+.carousel-outer { margin-top: var(--space-6); overflow: hidden; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); }
+.carousel-track { display: flex; will-change: transform; }
+.carousel-track.is-dragging { cursor: grabbing; }
+.carousel-track .partner { flex: none; width: 300px; padding: 36px 32px; border-right: 1px solid var(--color-divider); }
+.carousel-track .partner:hover { opacity: 0.6; }
+.carousel-nav { display: flex; gap: var(--space-2); margin-top: var(--space-6); }
+@media (max-width: 720px) { .carousel-track .partner { width: 268px; padding: 28px 24px; } }
+
 /* directory */
 .group + .group { margin-top: 96px; }
 .group .eyebrow { margin-bottom: var(--space-6); }
@@ -422,6 +452,8 @@ def main():
     data = json.loads((PARTNERS / "partners.json").read_text(encoding="utf-8"))
     partners = data["partners"]
     asf = asf_logo()
+    global CAROUSEL_SCRIPT
+    CAROUSEL_SCRIPT = carousel_script()
     (PARTNERS / "partner.css").write_text(system_css().strip() + "\n" + PAGE_CSS, encoding="utf-8")
 
     logos = {}
