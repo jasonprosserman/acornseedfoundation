@@ -37,6 +37,7 @@ LOGO_FILES = {
     "toronto-black-farmers": "toronto_black_farmers.png",
     "thunder-woman-healing-lodge-society": "thunder_woman.png",
     "wanasah": "wanasah.png",
+    "enagb-indigenous-youth-agency": "enagb.png",
     "black-esteem": "black_esteem.png",
     "mind-program": "mind.png",
     "oasis-youth-care-programs": "oasis_youth_care.png",
@@ -270,8 +271,11 @@ def partner_page(p, logo_uri, asf):
 
 
 def directory_page(partners, logos, asf):
-    current = [p for p in partners if p["cohort"]]
-    earlier = [p for p in partners if not p["cohort"]]
+    cohorts = []
+    for p in partners:
+        if p["cohort"] not in cohorts:
+            cohorts.append(p["cohort"])
+    cohorts.sort(reverse=True)  # newest first
 
     def card(p):
         return f"""<a class="partner card" href="/partners/{p["slug"]}/">
@@ -285,9 +289,11 @@ def directory_page(partners, logos, asf):
         if not items:
             return ""
         return f"""<div class="group">
-      <div class="eyebrow">{title}</div>
+      <div class="eyebrow">{esc(title)}</div>
       <div class="grid">{"".join(card(p) for p in items)}</div>
     </div>"""
+
+    groups = "".join(group(c, [p for p in partners if p["cohort"] == c]) for c in cohorts)
 
     return f"""<!doctype html>
 <html lang="en">
@@ -307,14 +313,13 @@ def directory_page(partners, logos, asf):
   <div class="wrap">
     <div class="eyebrow">Partners</div>
     <h1>The organizations we fund.</h1>
-    <p class="lede">Current partners receive a five-year, unrestricted grant. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
+    <p class="lede">Current partners receive a five-year, unrestricted grant; earlier cohorts received multi-year grants on the same terms. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
   </div>
 </section>
 
 <section class="sec band-surface" data-theme="light">
   <div class="wrap">
-    {group("Current cohort", current)}
-    {group("Partners", earlier)}
+    {groups}
   </div>
 </section>
 
