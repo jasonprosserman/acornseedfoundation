@@ -307,7 +307,7 @@ def directory_page(partners, logos, asf):
   <div class="wrap">
     <div class="eyebrow">Partners</div>
     <h1>The organizations we fund.</h1>
-    <p class="lede">Currently partners receive a five-year, unrestricted grant. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
+    <p class="lede">Current partners receive a five-year, unrestricted grant. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
   </div>
 </section>
 
