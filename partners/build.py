@@ -5,7 +5,7 @@
 
 Writes partners/<slug>/index.html for each partner and partners/index.html
 (the directory of all partners). No dependencies beyond the standard library.
-Logos are read from source-assets/partner-logos/ and inlined as base64, the
+Logos are read from source-assets/partner-logos/transparent/ (backgrounds stripped) and inlined as base64, the
 same way index.html inlines them, so each page stays self-contained. The
 shared stylesheet partners/partner.css is copied from the design-system
 <style> block in index.html plus the page scaffolding at the bottom of this
@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PARTNERS = ROOT / "partners"
-LOGOS = ROOT / "source-assets" / "partner-logos"
+LOGOS = ROOT / "source-assets" / "partner-logos" / "transparent"
 INDEX = ROOT / "index.html"
 
 # slug -> logo file in source-assets/partner-logos
@@ -307,7 +307,7 @@ def directory_page(partners, logos, asf):
   <div class="wrap">
     <div class="eyebrow">Partners</div>
     <h1>The organizations we fund.</h1>
-    <p class="lede">Each partner receives a five-year, unrestricted grant. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
+    <p class="lede">Currently partners receive a five-year, unrestricted grant. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
   </div>
 </section>
 
@@ -362,11 +362,11 @@ body { -webkit-font-smoothing: antialiased; }
 .hero .lede { font-size: clamp(17px, 1.4vw, 20px); max-width: 52ch; }
 .hero .partner-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-4); }
 .hero-logo { display: flex; justify-content: flex-end; }
-.hero-logo img { max-height: 120px; max-width: 280px; width: auto; height: auto; object-fit: contain; }
+.hero-logo img { max-height: 104px; max-width: 260px; width: auto; height: auto; object-fit: contain; background: none; }
 .hero-logo span { display: grid; place-items: center; width: 96px; height: 96px; border-radius: var(--radius-md); background: var(--color-neutral-200); color: var(--color-accent); font-size: 28px; font-family: var(--font-heading); }
 .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); margin-top: 64px; padding-top: var(--space-6); border-top: 1px solid var(--color-divider); }
 .facts p { margin: var(--space-2) 0 0; font-size: 15px; }
-@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; gap: var(--space-6); } .hero-logo { justify-content: flex-start; } .hero-logo img { max-height: 80px; } .facts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; gap: var(--space-6); } .hero-logo { justify-content: flex-start; } .hero-logo img { max-height: 72px; max-width: 220px; } .facts { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .facts { grid-template-columns: 1fr; gap: var(--space-4); } }
 
 /* what they do */
@@ -395,8 +395,8 @@ body { -webkit-font-smoothing: antialiased; }
 .grid .partner { width: auto; padding: var(--space-6); border-right: 0; }
 .grid .partner:hover { opacity: 1; border-color: var(--color-neutral-700); }
 .partner { text-decoration: none; color: inherit; display: block; transition: opacity 150ms var(--ease), border-color 150ms var(--ease); }
-.partner-logo { height: 48px; display: flex; align-items: center; margin-bottom: var(--space-4); }
-.partner-logo img { height: 48px; max-width: 140px; width: auto; object-fit: contain; }
+.partner-logo { height: 56px; display: flex; align-items: center; margin-bottom: var(--space-4); }
+.partner-logo img { max-height: 56px; max-width: 150px; width: auto; height: auto; object-fit: contain; background: none; }
 .partner-logo span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-neutral-200); color: var(--color-accent); font-size: 17px; }
 .partner .name { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 18.4px; letter-spacing: -0.015em; line-height: 1.25; }
 .partner .desc { font-size: 14px; margin: var(--space-2) 0 var(--space-4); color: color-mix(in srgb, var(--color-text) 70%, transparent); }
