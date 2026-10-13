@@ -22,6 +22,26 @@ GitHub Pages serves `main` from the repository root. The `CNAME` file binds the
 custom domain; do not delete it, or the site will fall back to the
 `*.github.io` address.
 
+## partners/
+
+Each partner has a profile page at `/partners/<slug>/` (for example
+`acornseedfoundation.com/partners/mind-program/`), and `/partners/` lists them all.
+Partners can link to their page from grant applications and decks.
+
+- `partners/partners.json` is the content: one entry per partner. Empty fields
+  (quote, funding, numbers, photo) are simply left off the page until the partner
+  fills in the questionnaire.
+- `partners/build.py` regenerates every page and `partners/partner.css` from that
+  file: `python3 partners/build.py` (standard library only, no install). The CSS
+  copies the design-system block out of `index.html`, so retune tokens there.
+- Logos are inlined from `source-assets/partner-logos/`; a partner photo goes in
+  the partner's folder and is referenced by filename in `photo`.
+- The pages are plain HTML and can be edited by hand, but the next build will
+  overwrite hand edits — put content changes in `partners.json`.
+
+The home-page carousel links to these pages; each profile links out to the
+partner's own site.
+
 ## source-assets/
 
 Original PNGs for the foundation logo and partner logos. These are **not** used by
