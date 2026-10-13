@@ -188,7 +188,7 @@ def partner_page(p, logo_uri, asf):
     funding = ""
     if p["funding"]:
         funding = f"""<div class="row">
-      <div class="eyebrow">What the funding makes possible</div>
+      <div class="eyebrow">What they&rsquo;ve accomplished</div>
       <div><p class="lede">{esc(p["funding"])}</p></div>
     </div>"""
 

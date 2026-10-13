@@ -1,5 +1,5 @@
 {
-  "_readme": "One entry per partner. Edit here, then run `python3 partners/build.py` to regenerate partners/<slug>/index.html and partners/index.html. Empty strings and empty lists are fine: the page simply omits that section. Fields: slug (URL), name, url (their site), tagline (one line), tags (3), cohort (label shown on the page, e.g. '2026 cohort'), term (e.g. '2026–2031'), led_by, serves, offers (list of short items), what (1 paragraph, their words), why (1 paragraph, ASF's words), quote {text, who}, funding (1 paragraph), numbers (list of {value, label}), donate, contact, photo (path relative to the partner's folder, or empty).",
+  "_readme": "One entry per partner. Edit here, then run `python3 partners/build.py` to regenerate partners/<slug>/index.html and partners/index.html. Empty strings and empty lists are fine: the page simply omits that section. Fields: slug (URL), name, url (their site), tagline (one line), tags (3), cohort (label shown on the page, e.g. '2026 cohort'), term (e.g. '2026–2031'), led_by, serves, offers (list of short items), what (1 paragraph, their words), why (1 paragraph, ASF's words), quote {text, who}, funding (what they have accomplished during the partnership, 1 paragraph), numbers (list of {value, label}), donate, contact, photo (path relative to the partner's folder, or empty).",
   "partners": [
     {
       "slug": "black-esteem",
@@ -187,7 +187,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "The farm grew 22,000 pounds of produce in a recent year, distributed through its sliding-scale Harvest Share program and farm stands, and its Urban Harvest partnership with the City redistributed more than 2,900 kg of food to local food banks and programs, reaching nearly 700 households. Since our partnership began it has launched a Land Stewardship Program rooted in Indigenous and diasporic knowledge, a Youth Farm Residency for Black, Indigenous, and racialized youth from Jane-Finch, and joined the Nourish Leadership Anchor Cohort on food and health.",
+      "funding": "The farm grew 22,000 pounds of produce in a recent year, distributed through its sliding-scale Harvest Share program and farm stands, and its Urban Harvest partnership with the City redistributed more than 2,900 kg of food to local food banks and programs, reaching nearly 700 households. It has launched a Land Stewardship Program rooted in Indigenous and diasporic knowledge, a Youth Farm Residency for Black, Indigenous, and racialized youth from Jane-Finch, and joined the Nourish Leadership Anchor Cohort on food and health.",
       "numbers": [
         {
           "value": "22,000 lb",
@@ -231,7 +231,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "CJC has used our funding in a way few grants allow: paying tenant leaders to become better organizers. In the years since, it has acted as counsel for rent strikes across the city, including a precedent-setting win at 1440–1442 Lawrence Avenue West that reversed an illegal eviction, influenced provincial bail-reform legislation, partnered with U of T's Faculty of Law on a legal-tech tool for marginalized communities, and launched Counsel Call, which became Canada's top \"How To\" podcast. We also introduced CJC to the McLean Foundation, which became a funder. It is now expanding into workers' rights.",
+      "funding": "CJC has acted as counsel for rent strikes across the city, including a precedent-setting win at 1440–1442 Lawrence Avenue West that reversed an illegal eviction and compelled the landlord to fix the building. It influenced provincial bail-reform legislation, partnered with U of T's Faculty of Law on a legal-tech tool for marginalized communities, mentored 13 aspiring lawyers, and launched Counsel Call, which became Canada's top \"How To\" podcast. It used part of our grant to pay tenant leaders to become organizers, and is now expanding into workers' rights.",
       "numbers": [
         {
           "value": "92%",
@@ -275,7 +275,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "Homeless Connect turned our grant into more: it ran matching campaigns around our funding, an idea borrowed from fellow partner The Reading Partnership, and in 2024 secured $69,337 in new grants alongside $210,000 in renewed commitments. Its October 2024 one-stop-shop served a record 1,240 guests with 339 volunteers and 322 service providers; PeerConnectTO has trained three cohorts of peer workers with lived experience; and the organization is now part of a St. Michael's study on whether peer support improves health outcomes. When its director prepared for leave, the organization hired a fractional fundraiser rather than pause.",
+      "funding": "Homeless Connect's October 2024 one-stop-shop served a record 1,240 guests with 339 volunteers and 322 service providers from 67 organizations. PeerConnectTO has trained three cohorts of peer workers with lived experience of homelessness, Everyday Connect gives people a 24/7 portal to nearby services, and the organization is part of a St. Michael's study on whether peer support improves health outcomes. It ran matching campaigns around our grant and in 2024 secured $69,337 in new grants alongside $210,000 in renewed commitments.",
       "numbers": [
         {
           "value": "1,240",
@@ -321,7 +321,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "Since our partnership began, ENAGB has opened a West End location and runs land-based learning and ceremony at Memtigwaake Kinomaage Maawnjiding, a 2.7-acre cultural site on the Humber River. It has gone on to attract $1 million over four years from the MLSE Foundation and a $900,000 Sun Life commitment for play-based programming, and in 2026 launched a large-scale competition powwow at Woodbine Park. The grassroots agency we funded in 2021 is now a city-wide one.",
+      "funding": "ENAGB has opened a West End location and runs land-based learning and ceremony at Memtigwaake Kinomaage Maawnjiding, a 2.7-acre cultural site on the Humber River. It secured $1 million over four years from the MLSE Foundation and a $900,000 commitment from Sun Life for play-based programming, and in 2026 launched a large-scale competition powwow at Woodbine Park. The grassroots agency we met in 2021 is now a city-wide one.",
       "numbers": [],
       "donate": "https://enagb-iya.ca/",
       "contact": "",
@@ -352,7 +352,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "Our funding supported Maggie's leadership capacity through a hard stretch: the organization unionized in 2021, and a fire in 2023 caused at least $500,000 in damage to its main office and forced major operational changes. Through it, Maggie's kept its drop-in, outreach, and harm-reduction work running and secured $850,000 over five years from the Public Health Agency of Canada.",
+      "funding": "Maggie's unionized in 2021 and, after a 2023 fire caused at least $500,000 in damage to its main office, kept its drop-in, outreach, and harm-reduction work running through major operational changes. It secured $850,000 over five years from the Public Health Agency of Canada.",
       "numbers": [],
       "donate": "https://www.maggiestoronto.org/",
       "contact": "",
@@ -383,7 +383,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "The Reading Partnership used our grant as a match: its year-end appeal raised $43,641.91 with matching, and Camesha reported that supporters gave more because of it, an approach she has since shared with every partner in our cohort. Since 2023 the organization has launched its 2024–2027 strategic plan, begun a research collaboration with the Canadian Children's Literacy Foundation on the reading journeys of Black children in Canada, and Camesha was inducted into the Scarborough Walk of Fame and named an Ashoka Fellow.",
+      "funding": "The Reading Partnership launched its 2024–2027 strategic plan and a research collaboration with the Canadian Children's Literacy Foundation on the reading journeys of Black children in Canada. Camesha Cox was inducted into the Scarborough Walk of Fame and named an Ashoka Fellow. The organization used our grant as a match for its year-end appeal, raising $43,641.91 and finding that supporters gave more because of it, an approach it has since shared with every partner in our cohort.",
       "numbers": [
         {
           "value": "$43,642",
@@ -427,7 +427,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "Our unrestricted funding supports the part of TAEH that no program grant pays for. In November 2024 the City procured TAEH, with the Infrastructure Institute, to provide wrap-around support to applicants to the new $15 million Community Housing Pre-Development Fund, helping newer organizations develop rental and supportive housing. TAEH remains the formally recognized non-Indigenous Community Advisory Board to the City on housing and homelessness, and its pre-budget submission to the federal government set out specific recommendations on housing funds, refugee settlement, and mental-health funding for homelessness services.",
+      "funding": "In November 2024 the City procured TAEH, with the Infrastructure Institute, to provide wrap-around support to applicants to the new $15 million Community Housing Pre-Development Fund, helping newer organizations develop rental and supportive housing. TAEH is the formally recognized non-Indigenous Community Advisory Board to the City on housing and homelessness, and its pre-budget submission to the federal government set out specific recommendations on housing funds, refugee settlement, and mental-health funding for homelessness services.",
       "numbers": [],
       "donate": "https://taeh.ca/",
       "contact": "",
@@ -458,7 +458,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "Our grant went where the collective said it was needed: the administration and back end that let the growing continue. Toronto Black Farmers now provides produce year-round at its Downsview Park farm stand and through the summer at the Afro-Caribbean Farmers Market, alongside workshops, hands-on training, and youth farming programs. Jacqueline and Noel remain two of the most outspoken voices for food justice in the city.",
+      "funding": "Toronto Black Farmers now provides produce year-round at its Downsview Park farm stand and through the summer at the Afro-Caribbean Farmers Market, alongside workshops, hands-on training, and youth farming programs. Jacqueline and Noel remain two of the most outspoken voices for food justice in the city.",
       "numbers": [],
       "donate": "https://torontoblackfarmersandfoodgrowerscollective.yourwebsitespace.com",
       "contact": "",
@@ -489,7 +489,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "When we first funded Thunder Woman in 2021 the lodge was a plan. The City redirected a three-storey house to the society in February 2022; it opened as a temporary healing lodge that December, added a garden suite in 2024, and building permits for the main lodge were issued in March 2025 with construction now under way. Alongside the build, the society runs Daughters of the Earth, a 16-week program for women on probation or bail, and is developing Indigikwe, a social enterprise that will train up to 24 women a year.",
+      "funding": "When we first partnered in 2021 the lodge was a plan. The City redirected a three-storey house to the society in February 2022; it opened as a temporary healing lodge that December, added a garden suite in 2024, and building permits for the main lodge were issued in March 2025 with construction under way. Alongside the build, the society runs Daughters of the Earth, a 16-week program for women on probation or bail, and is developing Indigikwe, a social enterprise that will train up to 24 women a year.",
       "numbers": [],
       "donate": "https://twhls.ca/",
       "contact": "",
@@ -520,7 +520,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "Since our partnership began, Wanasah has secured what grassroots organizations rarely do: $100,000 in core funding from Ontario's Ministry of Health, following a $400,000 federal investment in Black-centric, trauma-responsive services in Regent Park. It has integrated with Unity Health at St. Michael's Hospital, added a counsellor and a trusted psychiatrist to the team, and grown a group of 50 youth ambassadors, several of whom have become staff. In June 2025 Namarig Ahmed received the King Charles III Coronation Medal from the Governor General.",
+      "funding": "Wanasah secured what grassroots organizations rarely do: $100,000 in core funding from Ontario's Ministry of Health, following a $400,000 federal investment in Black-centric, trauma-responsive services in Regent Park. It integrated with Unity Health at St. Michael's Hospital, added a counsellor and a trusted psychiatrist to the team, consulted on Toronto Foundation's Vital Signs report, and grew a group of 50 youth ambassadors, several of whom have become staff. In June 2025 Namarig Ahmed received the King Charles III Coronation Medal from the Governor General.",
       "numbers": [
         {
           "value": "50",
