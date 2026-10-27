@@ -1,5 +1,5 @@
 {
-  "_readme": "One entry per partner. Edit here, then run `python3 partners/build.py` to regenerate partners/<slug>/index.html and partners/index.html. Empty strings and empty lists are fine: the page simply omits that section. Fields: slug (URL), name, url (their site), tagline (one line), tags (3), cohort (label shown on the page, e.g. '2026 cohort'), term (e.g. '2026–2031'), led_by, serves, offers (list of short items), what (1 paragraph, their words), why (1 paragraph, ASF's words), quote {text, who}, funding (what they have accomplished during the partnership, 1 paragraph), numbers (list of {value, label}), donate, contact, photo (path relative to the partner's folder, or empty).",
+  "_readme": "One entry per partner. Edit here, then run `python3 partners/build.py` to regenerate partners/<slug>/index.html and partners/index.html. Empty strings and empty lists are fine: the page simply omits that section. Fields: slug (URL), name, url (their site), tagline (one line), tags (3), cohort (partnership years shown on the page, e.g. '2026–2031'), term (e.g. '2026–2031'), led_by, serves, offers (list of short items), what (1 paragraph, their words), why (1 paragraph, ASF's words), quote {text, who}, funding (what they have accomplished during the partnership, 1 paragraph), numbers (list of {value, label}), donate, contact, photo (path relative to the partner's folder, or empty).",
   "partners": [
     {
       "slug": "black-esteem",
@@ -11,8 +11,8 @@
         "Black girls",
         "GTA"
       ],
-      "cohort": "2026–2031 cohort",
-      "term": "Five-year partnership, 2026–2031",
+      "cohort": "2026–2031",
+      "term": "2026–2031",
       "led_by": "Shayle Graham, Executive Director",
       "serves": "Black girls ages 8–16 across the Greater Toronto Area",
       "offers": [
@@ -43,8 +43,8 @@
         "Community housing",
         "Scarborough"
       ],
-      "cohort": "2026–2031 cohort",
-      "term": "Five-year partnership, 2026–2031",
+      "cohort": "2026–2031",
+      "term": "2026–2031",
       "led_by": "Grace Chan, Executive Director",
       "serves": "Toronto Community Housing residents in Scarborough facing food insecurity",
       "offers": [
@@ -74,8 +74,8 @@
         "Transitional housing",
         "Halton & Peel"
       ],
-      "cohort": "2026–2031 cohort",
-      "term": "Five-year partnership, 2026–2031",
+      "cohort": "2026–2031",
+      "term": "2026–2031",
       "led_by": "Grace Udodong, Executive Director",
       "serves": "Black and racialized youth experiencing homelessness in Halton and Peel Regions",
       "offers": [
@@ -106,8 +106,8 @@
         "Black girls",
         "GTA"
       ],
-      "cohort": "2026–2031 cohort",
-      "term": "Five-year partnership, 2026–2031",
+      "cohort": "2026–2031",
+      "term": "2026–2031",
       "led_by": "Aisha Addo, Founder",
       "serves": "Black girls and young women across the Greater Toronto Area",
       "offers": [
@@ -139,8 +139,8 @@
         "Black families",
         "Caregivers"
       ],
-      "cohort": "2026–2031 cohort",
-      "term": "Five-year partnership, 2026–2031",
+      "cohort": "2026–2031",
+      "term": "2026–2031",
       "led_by": "Sherron Grant and Clovis Grant, Co-founders",
       "serves": "Black families in the GTA raising children and adults with disabilities and special needs",
       "offers": [
@@ -172,8 +172,8 @@
         "Food access",
         "Jane & Finch"
       ],
-      "cohort": "2021–2023 cohort",
-      "term": "Multi-year partnership, 2021–2023",
+      "cohort": "2021–2023",
+      "term": "2021–2023",
       "led_by": "",
       "serves": "residents of Jane and Finch and the surrounding northwest Toronto neighbourhoods",
       "offers": [
@@ -216,8 +216,8 @@
         "Social justice",
         "GTHA"
       ],
-      "cohort": "2024–2027 cohort",
-      "term": "Multi-year partnership, 2024–2027",
+      "cohort": "2024–2027",
+      "term": "2024–2027",
       "led_by": "",
       "serves": "community organizers, tenants, and social movements across the Greater Toronto and Hamilton Area",
       "offers": [
@@ -260,8 +260,8 @@
         "Community services",
         "Toronto"
       ],
-      "cohort": "2024–2027 cohort",
-      "term": "Multi-year partnership, 2024–2027",
+      "cohort": "2024–2027",
+      "term": "2024–2027",
       "led_by": "",
       "serves": "people experiencing or at risk of homelessness in Toronto",
       "offers": [
@@ -275,7 +275,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "By its 2024 annual report, Homeless Connect's October 2024 one-stop-shop served a record 1,240 guests with 339 volunteers and 322 service providers from 67 organizations. PeerConnectTO has trained three cohorts of peer workers with lived experience of homelessness, Everyday Connect gives people a 24/7 portal to nearby services, and the organization is part of a St. Michael's study on whether peer support improves health outcomes. It ran matching campaigns around our grant and in 2024 secured $69,337 in new grants alongside $210,000 in renewed commitments.",
+      "funding": "By its 2024 annual report, Homeless Connect's October 2024 one-stop-shop served a record 1,240 guests with 339 volunteers and 322 service providers from 67 organizations. PeerConnectTO has trained three groups of peer workers with lived experience of homelessness, Everyday Connect gives people a 24/7 portal to nearby services, and the organization is part of a St. Michael's study on whether peer support improves health outcomes. It ran matching campaigns around our grant and in 2024 secured $69,337 in new grants alongside $210,000 in renewed commitments.",
       "numbers": [
         {
           "value": "1,240",
@@ -304,8 +304,8 @@
         "Culture & wellness",
         "Toronto"
       ],
-      "cohort": "2021–2023 cohort",
-      "term": "Multi-year partnership, 2021–2023",
+      "cohort": "2021–2023",
+      "term": "2021–2023",
       "led_by": "",
       "serves": "Indigenous youth ages 12–29 in Toronto, and families with children 0–6 through its EarlyON program",
       "offers": [
@@ -337,8 +337,8 @@
         "Harm reduction",
         "GTA"
       ],
-      "cohort": "2021–2023 cohort",
-      "term": "Multi-year partnership, 2021–2023",
+      "cohort": "2021–2023",
+      "term": "2021–2023",
       "led_by": "",
       "serves": "sex workers across Toronto and the GTA",
       "offers": [
@@ -368,8 +368,8 @@
         "Children & families",
         "Scarborough"
       ],
-      "cohort": "2024–2027 cohort",
-      "term": "Multi-year partnership, 2024–2027",
+      "cohort": "2024–2027",
+      "term": "2024–2027",
       "led_by": "",
       "serves": "children and families in Kingston-Galloway-Orton Park, Scarborough",
       "offers": [
@@ -383,7 +383,7 @@
         "text": "",
         "who": ""
       },
-      "funding": "The Reading Partnership launched its 2024–2027 strategic plan and a research collaboration with the Canadian Children's Literacy Foundation on the reading journeys of Black children in Canada. Camesha Cox was inducted into the Scarborough Walk of Fame and named an Ashoka Fellow. The organization used our grant as a match for its year-end appeal, raising $43,641.91 by Camesha's account, with supporters saying the match made them give more, an approach it has since shared with every partner in our cohort.",
+      "funding": "The Reading Partnership launched its 2024–2027 strategic plan and a research collaboration with the Canadian Children's Literacy Foundation on the reading journeys of Black children in Canada. Camesha Cox was inducted into the Scarborough Walk of Fame and named an Ashoka Fellow. The organization used our grant as a match for its year-end appeal, raising $43,641.91 by Camesha's account, with supporters saying the match made them give more, an approach it has since shared with every partner we fund.",
       "numbers": [
         {
           "value": "$43,642",
@@ -412,8 +412,8 @@
         "Collective impact",
         "Toronto"
       ],
-      "cohort": "2024–2027 cohort",
-      "term": "Multi-year partnership, 2024–2027",
+      "cohort": "2024–2027",
+      "term": "2024–2027",
       "led_by": "",
       "serves": "Toronto's homelessness-serving agencies and advocates, and through them, people experiencing homelessness",
       "offers": [
@@ -443,8 +443,8 @@
         "Black community",
         "Urban farming"
       ],
-      "cohort": "2021–2023 cohort",
-      "term": "Multi-year partnership, 2021–2023",
+      "cohort": "2021–2023",
+      "term": "2021–2023",
       "led_by": "",
       "serves": "Black communities in Toronto seeking access to culturally relevant, clean food",
       "offers": [
@@ -474,8 +474,8 @@
         "Housing",
         "2SLGBTQIA+"
       ],
-      "cohort": "2021–2023 cohort",
-      "term": "Multi-year partnership, 2021–2023",
+      "cohort": "2021–2023",
+      "term": "2021–2023",
       "led_by": "",
       "serves": "First Nations, Inuit, and Métis women and 2SLGBTQIA+ people leaving the justice system in Toronto",
       "offers": [
@@ -505,8 +505,8 @@
         "Black youth",
         "Regent Park"
       ],
-      "cohort": "2024–2027 cohort",
-      "term": "Multi-year partnership, 2024–2027",
+      "cohort": "2024–2027",
+      "term": "2024–2027",
       "led_by": "",
       "serves": "Black youth and their families in Regent Park and surrounding downtown Toronto neighbourhoods",
       "offers": [

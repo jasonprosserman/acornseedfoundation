@@ -151,11 +151,9 @@ def host(url):
 def partner_page(p, logo_uri, asf):
     name = esc(p["name"])
     tags = "".join(f'<span class="tag tag-neutral">{esc(t)}</span>' for t in p["tags"])
-    cohort = esc(p["cohort"]) if p["cohort"] else "Partner"
+    years = ("Partner " + esc(p["cohort"])) if p["cohort"] else "Partner"
 
     facts = [("Partnership", esc(p["term"]) if p["term"] else "Multi-year, unrestricted")]
-    if p["cohort"]:
-        facts.insert(0, ("Cohort", esc(p["cohort"])))
     if p["led_by"]:
         facts.append(("Led by", esc(p["led_by"])))
     facts.append(("Website", f'<a href="{esc(p["url"])}" target="_blank" rel="noopener">{esc(host(p["url"]))}</a>'))
@@ -228,7 +226,7 @@ def partner_page(p, logo_uri, asf):
 
 <section class="hero band" data-theme="light">
   <div class="wrap">
-    <p class="crumbs meta"><a href="/partners/">Partners</a><span class="sep" aria-hidden="true"></span><span>{cohort}</span></p>
+    <p class="crumbs meta"><a href="/partners/">Partners</a><span class="sep" aria-hidden="true"></span><span>{years}</span></p>
     <div class="hero-grid">
       <div>
         <h1>{name}</h1>
@@ -284,8 +282,8 @@ def partner_page(p, logo_uri, asf):
 
 
 def directory_page(partners, logos, asf):
-    """Current cohort as large cards; every earlier cohort in one scrolling
-    carousel (same mechanics as the home page), newest cohort first."""
+    """Current partners as large cards; every earlier partner in one scrolling
+    carousel (same mechanics as the home page), most recent years first."""
     cohorts = sorted({p["cohort"] for p in partners}, reverse=True)
     current_cohort = cohorts[0]
     current = [p for p in partners if p["cohort"] == current_cohort]
@@ -335,7 +333,7 @@ def directory_page(partners, logos, asf):
   <div class="wrap">
     <div class="eyebrow">Partners</div>
     <h1>The organizations we fund.</h1>
-    <p class="lede">Current partners receive a five-year, unrestricted grant; earlier cohorts received multi-year grants on the same terms. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
+    <p class="lede">Current partners receive a five-year, unrestricted grant; earlier partners received multi-year grants on the same terms. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
   </div>
 </section>
 
