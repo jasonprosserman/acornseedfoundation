@@ -268,7 +268,7 @@ def partner_page(p, logo_uri, asf):
       <div>
         <p class="lede">The best way to support {name} is directly.</p>
         <div class="hero-ctas">{links_html}</div>
-        <p class="text-muted">Acorn Seed Foundation is a funder of {name}. This page is maintained by Acorn Seed Foundation together with {name}. <a href="/#how-we-work">How we fund &rarr;</a></p>
+        <p class="text-muted">Acorn Seed Foundation is a funder of {name}. This page is written and maintained by Acorn Seed Foundation. <a href="/#how-we-work">How we fund &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -333,7 +333,7 @@ def directory_page(partners, logos, asf):
   <div class="wrap">
     <div class="eyebrow">Partners</div>
     <h1>The organizations we fund.</h1>
-    <p class="lede">Current partners receive a five-year, unrestricted grant; earlier partners received multi-year grants on the same terms. These pages are written with the organizations, in their words, and are theirs to share with other funders, press, or anyone curious about the work.</p>
+    <p class="lede">Current partners receive a five-year, unrestricted grant; earlier partners received multi-year grants on the same terms. These pages are written by Acorn Seed Foundation from our work with each organization, and are theirs to share with other funders, press, or anyone curious about the work.</p>
   </div>
 </section>
 
