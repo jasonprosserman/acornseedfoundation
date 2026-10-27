@@ -366,6 +366,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* numbers */
 .numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-6); border-top: 1px solid var(--color-divider); padding-top: var(--space-6); }
+.numbers-note { font-size: 12.5px; margin: var(--space-3) 0 0; }
 .num { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(34px, 4vw, 52px); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--space-2); }
 
 /* get involved */

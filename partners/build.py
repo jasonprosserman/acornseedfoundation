@@ -197,7 +197,10 @@ def partner_page(p, logo_uri, asf):
         cells = "".join(f'<div><div class="num">{esc(n["value"])}</div><div class="eyebrow">{esc(n["label"])}</div></div>' for n in p["numbers"])
         numbers = f"""<div class="row stack">
       <div class="eyebrow">By the numbers</div>
-      <div class="numbers">{cells}</div>
+      <div>
+        <div class="numbers">{cells}</div>
+        <p class="text-muted numbers-note">Figures reported by {name}.</p>
+      </div>
     </div>"""
 
     links = [f'<a class="btn btn-primary" href="{esc(p["url"])}" target="_blank" rel="noopener">Visit {esc(host(p["url"]))} &rarr;</a>']
@@ -407,6 +410,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* numbers */
 .numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-6); border-top: 1px solid var(--color-divider); padding-top: var(--space-6); }
+.numbers-note { font-size: 12.5px; margin: var(--space-3) 0 0; }
 .num { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(34px, 4vw, 52px); line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--space-2); }
 
 /* get involved */
