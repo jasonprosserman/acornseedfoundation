@@ -165,7 +165,7 @@ def partner_page(p, logo_uri, asf):
     if p["offers"]:
         offers = '<ul class="offers">' + "".join(f"<li>{esc(o)}</li>" for o in p["offers"]) + "</ul>"
 
-    serves = f'<p class="lede">{esc(p["serves"])}</p>' if p["serves"] else ""
+    serves = f'<p class="lede">{name} serves {esc(p["serves"]).rstrip(".")}.</p>' if p["serves"] else ""
     what = f'<p>{esc(p["what"])}</p>' if p["what"] else ""
     why = f'<p>{esc(p["why"])}</p>' if p["why"] else ""
 
