@@ -251,7 +251,7 @@ def partner_page(p, logo_uri, asf):
       </div>
     </div>
     <div class="row stack">
-      <div class="eyebrow">Why we fund them</div>
+      <div class="eyebrow">What sets them apart</div>
       <div>{why}</div>
     </div>
   </div>
