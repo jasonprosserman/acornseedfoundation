@@ -39,6 +39,21 @@ Partners can link to their page from grant applications and decks.
 - The pages are plain HTML and can be edited by hand, but the next build will
   overwrite hand edits — put content changes in `partners.json`.
 
+### Editorial rules for the copy
+
+- **No run-on sentences.** Keep sentences under about 30 words. If one carries
+  more than two clauses, split it in two.
+- **Say each thing once.** A fact belongs in exactly one section: `what` is the
+  services, `why` is what sets the organization apart, `funding` is what they
+  have accomplished. Don't re-explain the services in `why`, and don't repeat a
+  figure that already appears elsewhere on the page.
+- **Attribute what you can't verify.** Figures from an organization's own
+  application or report read as "they report", "by their own count", or
+  "according to their annual reports".
+- **Write about the organization, not the foundation.** These pages exist so a
+  partner can send them to another funder.
+- Inline citations use `[label](https://url)` and open in a new tab.
+
 The home-page carousel links to these pages; each profile links out to the
 partner's own site.
 

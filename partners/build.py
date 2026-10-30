@@ -175,7 +175,6 @@ def partner_page(p, logo_uri, asf):
     if p["offers"]:
         offers = '<ul class="offers">' + "".join(f"<li>{prose(o)}</li>" for o in p["offers"]) + "</ul>"
 
-    serves = f'<p class="lede">{name} serves {prose(p["serves"]).rstrip(".")}.</p>' if p["serves"] else ""
     what = f'<p>{prose(p["what"])}</p>' if p["what"] else ""
     why = f'<p>{prose(p["why"])}</p>' if p["why"] else ""
 
@@ -256,7 +255,6 @@ def partner_page(p, logo_uri, asf):
     <div class="row">
       <div class="eyebrow">What they do</div>
       <div>
-        {serves}
         {what}
         {offers}
         {photo}
