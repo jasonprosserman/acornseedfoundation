@@ -50,6 +50,18 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^)\s]+)\)")
+
+
+def prose(s):
+    """Escape text, then turn [label](https://url) into a link that opens in a
+    new tab. Use this for any field that may carry an inline citation."""
+    return LINK_RE.sub(
+        lambda m: f'<a href="{m.group(2)}" target="_blank" rel="noopener">{m.group(1)}</a>',
+        esc(s),
+    )
+
+
 def data_uri(path):
     b = path.read_bytes()
     return "data:image/png;base64," + base64.b64encode(b).decode("ascii")
@@ -161,11 +173,11 @@ def partner_page(p, logo_uri, asf):
 
     offers = ""
     if p["offers"]:
-        offers = '<ul class="offers">' + "".join(f"<li>{esc(o)}</li>" for o in p["offers"]) + "</ul>"
+        offers = '<ul class="offers">' + "".join(f"<li>{prose(o)}</li>" for o in p["offers"]) + "</ul>"
 
-    serves = f'<p class="lede">{name} serves {esc(p["serves"]).rstrip(".")}.</p>' if p["serves"] else ""
-    what = f'<p>{esc(p["what"])}</p>' if p["what"] else ""
-    why = f'<p>{esc(p["why"])}</p>' if p["why"] else ""
+    serves = f'<p class="lede">{name} serves {prose(p["serves"]).rstrip(".")}.</p>' if p["serves"] else ""
+    what = f'<p>{prose(p["what"])}</p>' if p["what"] else ""
+    why = f'<p>{prose(p["why"])}</p>' if p["why"] else ""
 
     photo = ""
     if p["photo"]:
@@ -187,7 +199,7 @@ def partner_page(p, logo_uri, asf):
     if p["funding"]:
         funding = f"""<div class="row">
       <div class="eyebrow">What they&rsquo;ve accomplished</div>
-      <div><p class="lede">{esc(p["funding"])}</p></div>
+      <div><p class="lede">{prose(p["funding"])}</p></div>
     </div>"""
 
     numbers = ""
