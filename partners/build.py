@@ -229,11 +229,11 @@ def partner_page(p, logo_uri, asf):
     <p class="crumbs meta"><a href="/partners/">Partners</a><span class="sep" aria-hidden="true"></span><span>{years}</span></p>
     <div class="hero-grid">
       <div>
-        <h1>{name}</h1>
+        <h1><a href="{esc(p["url"])}" target="_blank" rel="noopener">{name}</a></h1>
         <p class="lede">{esc(p["tagline"])}</p>
         <div class="partner-tags">{tags}</div>
       </div>
-      <div class="hero-logo"><img src="{logo_uri}" alt="{esc(p.get("logo_alt") or name + " logo")}" data-initials="{initials(p["name"])}" /></div>
+      <div class="hero-logo"><a href="{esc(p["url"])}" target="_blank" rel="noopener" aria-label="{name} website (opens in a new tab)"><img src="{logo_uri}" alt="{esc(p.get("logo_alt") or name + " logo")}" data-initials="{initials(p["name"])}" /></a></div>
     </div>
     <div class="facts">{facts_html}</div>
   </div>
@@ -386,6 +386,10 @@ body { -webkit-font-smoothing: antialiased; }
 .crumbs a { color: inherit; text-decoration: none; }
 .hero-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: center; }
 .hero h1 { font-size: clamp(31px, 4.6vw, 60px); line-height: 1.05; max-width: 18ch; margin: 0 0 var(--space-4); }
+.hero h1 a { color: inherit; text-decoration: none; text-underline-offset: 6px; transition: opacity 150ms var(--ease); }
+.hero h1 a:hover { opacity: 0.55; text-decoration: underline; text-decoration-thickness: 2px; }
+.hero-logo a { display: inline-flex; transition: opacity 150ms var(--ease); }
+.hero-logo a:hover { opacity: 0.6; }
 .hero .lede { font-size: clamp(17px, 1.4vw, 20px); max-width: 52ch; }
 .hero .partner-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-4); }
 .hero-logo { display: flex; justify-content: flex-end; }
